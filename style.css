@@ -1,0 +1,102 @@
+html,
+body {
+    font-family: 'Nunito', sans-serif;
+    height: 100%;
+    margin: 0;
+
+}
+
+
+.bg-wideo {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    max-height: 100%;
+    object-fit: cover;
+    width: 100%;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    z-index: -1;
+    transition: 1s all;
+}
+
+#titlescreen {
+    opacity: 0;
+    transition: 2s all;
+    position: relative;
+    height: 100%;
+}
+
+
+.title {
+    text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 70px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
+
+.numbers {
+    text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
+    text-align: center;
+    font-size: 50px;
+}
+
+#tabela {
+    height: 100px;
+    width: 100%;
+    display: flex;
+}
+
+.contents {
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.static {
+    text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
+    font-size: 25px;
+    font-weight: 300;
+    color: white;
+}
+
+#temp {
+    text-align: center;
+    width: 33%;
+    border-right: 1px solid white;
+}
+
+#alttemp {
+    text-align: center;
+    width: 33%;
+
+}
+
+#hum {
+    text-align: center;
+    width: 33%;
+    border-right: 1px solid white;
+
+}
+
+#background {
+    height: 100%;
+    top: 0;
+    position: absolute;
+    width: 100%;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    width: 60%;
+    margin: 0 auto;
+}
