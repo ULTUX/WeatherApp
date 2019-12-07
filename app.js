@@ -69,14 +69,6 @@ setInterval(() => {
 let bg = document.getElementsByClassName("bg-wideo");
 
 window.onload = function () {
-    fetch("http://178.183.121.110/").then((resp) => {
-        resp.json().then((resp => {
-            setTemp(parseFloat(resp["temp"]));
-            setHum(parseFloat(resp["hum"]));
-            setAltTemp(parseFloat(resp["temp_2"]));
-            isInit = true;
-        }));
-    });
     document.getElementById("titlescreen").style.opacity = 1;
     if (Math.random() > 0.5)
         bg[0].style.opacity = 1;
@@ -95,4 +87,4 @@ setInterval(() => {
             setTimeout(bg[1].style.opacity = 0, 1000);
         }
     }
-}, 10000)
+}, 10000);
