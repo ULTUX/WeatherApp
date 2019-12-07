@@ -51,11 +51,6 @@ setInterval(() => {
     if (isInit) {
         fetch("http://178.183.121.110/").then((resp) => {
             resp.json().then((resp => {
-                if (getTemp().isNaN() || getHum().isNan() || getAltTemp.isNaN()) {
-                    setTemp(parseFloat(resp["temp"]));
-                    setHum(parseFloat(resp["hum"]));
-                    setAltTemp(parseFloat(resp["temp_2"]));
-                }
                 changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
                 changeNumber(parseFloat(resp["hum"]), getHum, setHum);
                 changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
@@ -63,10 +58,12 @@ setInterval(() => {
         });
     } else {
         fetch("http://178.183.121.110/").then((resp) => {
-            setTemp(parseFloat(resp["temp"]));
-            setHum(parseFloat(resp["hum"]));
-            setAltTemp(parseFloat(resp["temp_2"]));
-            isInit = true;
+            resp.json().then((resp) => {
+                setTemp(parseFloat(resp["temp"]));
+                setHum(parseFloat(resp["hum"]));
+                setAltTemp(parseFloat(resp["temp_2"]));
+                isInit = true;
+            });
         });
     }
 }, 1000);
