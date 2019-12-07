@@ -29,11 +29,9 @@ function getAltTemp() {
 var timer;
 
 function changeNumber(val, getVal, setVal) {
-
     if (val != getVal()) {
         var range = val - getVal();
         var increment = range / 100;
-        // if (Math.abs(increment) < 0.01) increment = val > getVal() ? 0.01 : -0.01;
         var step = Math.abs(Math.floor(100 / (10 + Math.floor(range))));
         clearInterval(timer);
         timer = setInterval(() => {
