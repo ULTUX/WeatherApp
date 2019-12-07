@@ -65,8 +65,8 @@ window.onload = function () {
     fetch("http://178.183.121.110/").then((resp) => {
         resp.json().then((resp => {
             setTemp(parseFloat(resp["temp"]));
-            setHum(resp["hum"]);
-            setAltTemp(resp["temp_2"]);
+            setHum(parseFloat(resp["hum"]));
+            setAltTemp(parseFloat(resp["temp_2"]));
             isInit = true;
         }));
     });
