@@ -1,6 +1,7 @@
 let tempSpan = document.getElementById("tempval");
 let humSpan = document.getElementById("humval");
 let altTempSpan = document.getElementById("alttempval");
+let isInit = false;
 
 function setTemp(temp) {
     tempSpan.innerText = temp + "\u00B0C";
@@ -47,18 +48,21 @@ function changeNumber(val, getVal, setVal) {
 }
 
 setInterval(() => {
-    fetch("http://178.183.121.110/").then((resp) => {
-        resp.json().then((resp => {
-            changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
-            changeNumber(parseFloat(resp["hum"]), getHum, setHum);
-            changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
-        }));
-    });
+    if (isInit) {
+        fetch("http://178.183.121.110/").then((resp) => {
+            resp.json().then((resp => {
+                changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
+                changeNumber(parseFloat(resp["hum"]), getHum, setHum);
+                changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
+            }));
+        });
+    }
 }, 1000);
 
 let bg = document.getElementsByClassName("bg-wideo");
 
 window.onload = function () {
+    isInit = true;
     fetch("http://178.183.121.110/").then((resp) => {
         resp.json().then((resp => {
             setTemp(parseFloat(resp["temp"]));
