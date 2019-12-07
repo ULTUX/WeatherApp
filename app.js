@@ -56,6 +56,11 @@ setInterval(() => {
                 changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
             }));
         });
+    } else {
+        setTemp(parseFloat(resp["temp"]));
+        setHum(parseFloat(resp["hum"]));
+        setAltTemp(parseFloat(resp["temp_2"]));
+        isInit = true;
     }
 }, 1000);
 
