@@ -46,7 +46,7 @@ function changeNumber(val, getVal, setVal) {
 }
 
 setInterval(() => {
-    fetch("https://178.183.121.110/").then((resp) => {
+    fetch("http://178.183.121.110/").then((resp) => {
         resp.json().then((resp => {
             changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
             changeNumber(parseFloat(resp["hum"]), getHum, setHum);
@@ -58,7 +58,7 @@ setInterval(() => {
 let bg = document.getElementsByClassName("bg-wideo");
 
 window.onload = function () {
-    fetch("https://178.183.121.110/").then((resp) => {
+    fetch("http://178.183.121.110/").then((resp) => {
         resp.json().then((resp => {
             changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
             changeNumber(parseFloat(resp["hum"]), getHum, setHum);
