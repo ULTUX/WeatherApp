@@ -62,12 +62,12 @@ setInterval(() => {
 let bg = document.getElementsByClassName("bg-wideo");
 
 window.onload = function () {
-    isInit = true;
     fetch("http://178.183.121.110/").then((resp) => {
         resp.json().then((resp => {
             setTemp(parseFloat(resp["temp"]));
             setHum(resp["hum"]);
             setAltTemp(resp["temp_2"]);
+            isInit = true;
         }));
     });
     document.getElementById("titlescreen").style.opacity = 1;
