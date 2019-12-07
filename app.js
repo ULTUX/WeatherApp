@@ -25,16 +25,17 @@ function getHum() {
 function getAltTemp() {
     return parseFloat(altTempSpan.innerText.replace("\u00B0C", ""));
 }
-var executed = false
+var timer;
 
 function changeNumber(val, getVal, setVal) {
 
     if (val != getVal()) {
         var range = val - getVal();
-        var increment = range / 100;
+        var increment = range / 1000;
         if (Math.abs(increment) < 0.01) increment = val > getVal() ? 0.01 : -0.01;
-        var step = Math.abs(Math.floor(100 / (1 + Math.floor(range))))
-        var timer = setInterval(() => {
+        var step = Math.abs(Math.floor(10 / (1 + Math.floor(range))))
+        clearInterval(timer);
+        timer = setInterval(() => {
             setVal((getVal() + increment).toPrecision(4));
             if (Math.abs(val - getVal()) < Math.abs(range / 10)) {
                 clearInterval(timer);
