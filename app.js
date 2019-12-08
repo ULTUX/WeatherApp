@@ -60,7 +60,6 @@ setInterval(() => {
                 setTemp((0.6 * parseFloat(resp["temp"])).toPrecision(4));
                 setHum((0.6 * parseFloat(resp["hum"])).toPrecision(4));
                 setAltTemp((0.6 * parseFloat(resp["temp_2"])).toPrecision(4));
-                isInit = true;
             });
         });
         setTimeout(() => {
@@ -69,9 +68,10 @@ setInterval(() => {
                     changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
                     changeNumber(parseFloat(resp["hum"]), getHum, setHum);
                     changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
+                    isInit = true;
                 }));
             });
-        }, 200);
+        }, 100);
     }
 }, 1000);
 
