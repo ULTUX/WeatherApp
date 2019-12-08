@@ -57,9 +57,9 @@ setInterval(() => {
     } else {
         fetch("http://178.183.121.110/").then((resp) => {
             resp.json().then((resp) => {
-                setTemp(parseFloat(resp["temp"]));
-                setHum(parseFloat(resp["hum"]));
-                setAltTemp(parseFloat(resp["temp_2"]));
+                setTemp(0.6 * parseFloat(resp["temp"]));
+                setHum(0.6 * parseFloat(resp["hum"]));
+                setAltTemp(0.6 * parseFloat(resp["temp_2"]));
                 isInit = true;
             });
         });
