@@ -26,19 +26,55 @@ function getHum() {
 function getAltTemp() {
     return parseFloat(altTempSpan.innerText.replace("\u00B0C", ""));
 }
-var timer;
+var timert;
 
-function changeNumber(val, getVal, setVal) {
-    if (val != getVal()) {
-        var range = val - getVal();
+function changeTemp(val) {
+    if (val != getTemp()) {
+        var range = val - getTemp();
         var increment = range / 100;
         var step = Math.abs(Math.floor(100 / (10 + Math.floor(range))));
-        clearInterval(timer);
-        timer = setInterval(() => {
-            setVal((getVal() + increment).toPrecision(4));
-            if (Math.abs(val - getVal()) < Math.abs(range / 10)) {
-                clearInterval(timer);
-                setVal(val);
+        clearInterval(timert);
+        timert = setInterval(() => {
+            setTemp((getTemp() + increment).toPrecision(4));
+            if (Math.abs(val - getTemp()) < Math.abs(range / 10)) {
+                clearInterval(timert);
+                setTemp(val);
+            }
+        }, step);
+    }
+
+}
+var timerh;
+
+function changeHum(val) {
+    if (val != getHum()) {
+        var range = val - getHum();
+        var increment = range / 100;
+        var step = Math.abs(Math.floor(100 / (10 + Math.floor(range))));
+        clearInterval(timerh);
+        timerh = setInterval(() => {
+            setHum((getHum() + increment).toPrecision(4));
+            if (Math.abs(val - getHum()) < Math.abs(range / 10)) {
+                clearInterval(timerh);
+                setHum(val);
+            }
+        }, step);
+    }
+
+}
+var timerat;
+
+function changeAltTemp(val) {
+    if (val != getAltTemp()) {
+        var range = val - getAltTemp();
+        var increment = range / 100;
+        var step = Math.abs(Math.floor(100 / (10 + Math.floor(range))));
+        clearInterval(timerat);
+        timerat = setInterval(() => {
+            setAltTemp((getAltTemp() + increment).toPrecision(4));
+            if (Math.abs(val - getAltTemp()) < Math.abs(range / 10)) {
+                clearInterval(timerat);
+                setAltTemp(val);
             }
         }, step);
     }
@@ -49,9 +85,9 @@ setInterval(() => {
     if (isInit) {
         fetch("http://178.183.121.110/").then((resp) => {
             resp.json().then((resp => {
-                changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
-                changeNumber(parseFloat(resp["hum"]), getHum, setHum);
-                changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
+                changeTemp(parseFloat(resp["temp"]));
+                changeHum(parseFloat(resp["hum"]));
+                changeAltTemp(parseFloat(resp["temp_2"]));
             }));
         });
     } else {
@@ -65,9 +101,9 @@ setInterval(() => {
         setTimeout(() => {
             fetch("http://178.183.121.110/").then((resp) => {
                 resp.json().then((resp => {
-                    changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
-                    changeNumber(parseFloat(resp["hum"]), getHum, setHum);
-                    changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
+                    changeTemp(parseFloat(resp["temp"]));
+                    changeHum(parseFloat(resp["hum"]));
+                    changeAltTemp(parseFloat(resp["temp_2"]));
                     isInit = true;
                 }));
             });
