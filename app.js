@@ -63,6 +63,15 @@ setInterval(() => {
                 isInit = true;
             });
         });
+        setTimeout(() => {
+            fetch("http://178.183.121.110/").then((resp) => {
+                resp.json().then((resp => {
+                    changeNumber(parseFloat(resp["temp"]), getTemp, setTemp);
+                    changeNumber(parseFloat(resp["hum"]), getHum, setHum);
+                    changeNumber(parseFloat(resp["temp_2"]), getAltTemp, setAltTemp);
+                }));
+            });
+        }, 200);
     }
 }, 1000);
 
